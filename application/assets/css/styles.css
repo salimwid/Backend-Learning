@@ -1,0 +1,13 @@
+/*Navbar CSS*/
+.nav.navbar-nav {
+  background: red;
+  width: 100%;
+}
+
+section {
+	margin-top: 500px;
+}
+
+.form-submit-test {
+	margin-top: 100px;
+}
