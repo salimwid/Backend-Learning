@@ -40,6 +40,7 @@
 
 $route['default_controller'] = 'Template_test';
 $route['404_override'] = '';
+$route['(:any)'] = 'template_test/$1';
 
 
 /* End of file routes.php */

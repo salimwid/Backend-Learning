@@ -1,6 +1,6 @@
 <h1>Charge $10 with Stripe</h1>
 
-<form action="application/controllers/template_test.php/payment_stripe" method="POST" id="payment-form">
+<form action="<?php echo base_url();?>payment_stripe" method="POST" id="payment-form">
 <span class="payment-errors"></span>
 
 <div class="form-row">
@@ -40,7 +40,6 @@ $(document).ready(function(){
   $('#payment-form').submit(function() {
     var $form = $(this);
     // Disable the submit button to prevent repeated clicks
-    $form.find('button').prop('disabled', true);
 
     Stripe.card.createToken($form, stripeResponseHandler);
 
@@ -54,7 +53,6 @@ $(document).ready(function(){
     if (response.error) {
       // Show the errors on the form
       $form.find('.payment-errors').text(response.error.message);
-      $form.find('button').prop('disabled', false);
     }
 
     else {

@@ -1,6 +1,7 @@
 <?php
 
 date_default_timezone_set('America/Toronto');
+require_once('application/assets/php/stripe/lib/Stripe.php');
 
 class Template_test extends CI_Controller {
 
