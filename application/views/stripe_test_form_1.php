@@ -1,6 +1,6 @@
 <h1>Charge $10 with Stripe</h1>
 
-<form action="controller/template_test/payment_stripe" method="POST" id="payment-form">
+<form action="application/controllers/template_test.php/payment_stripe" method="POST" id="payment-form">
 <span class="payment-errors"></span>
 
 <div class="form-row">
@@ -28,6 +28,8 @@
 
 <button type="submit">Submit Payment
 </button>
+<span class="payment-errors">
+</span>
 </form>
 
 <script type="text/javascript">
@@ -59,10 +61,11 @@ $(document).ready(function(){
       // token contains id, last4, and card type
       var token = response.id;
       console.log(token);
+      console.log(token);
       // Insert the token into the form so it gets submitted to the server
       $form.append($('<input type="hidden" name="stripeToken" />').val(token));
       // and re-submit
-      $form.submit();
+      $form.submit(ajax_submit);
     }
   };
 
@@ -73,24 +76,19 @@ $(document).ready(function(){
         url:$form.attr('action'),
         type:$form.attr('method'),
         data:$form.serialize(),
-        console.log(jsonEncode(data));
         success:function(data){
           $response = $.parseJSON(data);
-          if ($response.status == 200) {
-              $btn.html($response.alert);
-              $btn.prop('disabled',false);
+          if ($response == 200) {
+              $btn.html('Notification Sent');
               $('.fields').val('');
             }
           else {
-              $btn.html($response.alert);
-              $btn.prop('disabled',false);
+              $btn.html('NOOOO');
           }
-          console.log(data);
         },
         error:function(data){
             console.log(data);
             $btn.html('Error');
-            $btn.prop('disabled',false);
         }
       });
   }

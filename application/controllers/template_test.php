@@ -49,12 +49,14 @@ class Template_test extends CI_Controller {
 		echo ($this->db->insert('name_registration',$dataArray)) ? 200:400;
 	}
 
-	public function payment_stripe(){
+	private function payment_stripe(){
+		$errCode = 200;
 		$postData = $this->input->post(null,true);
 		Stripe::setApiKey("sk_test_7LxIg6xbmmSeRfAVBubrapgU");
 
 		// Get the credit card details submitted by the form
 		$token = $postData['stripeToken'];
+		print("token printed");
 
 		// Create the charge on Stripe's servers - this will charge the user's card
 		try {
@@ -62,22 +64,37 @@ class Template_test extends CI_Controller {
 		  "amount" => 1000, // amount in cents, again
 		  "currency" => "cad",
 		  "card" => $token,
-		  "description" => "payinguser@example.com")
-		);
+		  "description" => "payinguser@example.com"
+		  ));
 		} 
 
-		if catch(Stripe_CardError $e) {
-			$response['status'] = 400;
-			$response['alert'] = "Card has been Declined";
-		}
+			catch(Stripe_CardError $e){
+				$errCode=777;
 
-		else {
-			$response['status'] = 200;
-			$response['alert'] = "Charge has been Received"
-		}
+				$body = $e->getJsonBody();
+			  	$err  = $body['error'];
 
-		$this->load->view('stripe_test_form_1', $response);
+				$errCode = $err['code'];
+
+			}catch (Stripe_InvalidRequestError $e) {
+			  // Invalid parameters were supplied to Stripe's API
+				$errCode=712;
+			} catch (Stripe_AuthenticationError $e) {
+			  // Authentication with Stripe's API failed
+			  // (maybe you changed API keys recently)
+				$errCode=712;
+			} catch (Stripe_ApiConnectionError $e) {
+			  // Network communication with Stripe failed
+				$errCode=712;
+			} catch (Stripe_Error $e) {
+			  // Display a very generic error to the user, and maybe send
+			  // yourself an email
+				$errCode=712;
+			} catch (Exception $e) {
+			  // Something else happened, completely unrelated to Stripe
+				$errCode=712;
+			}
+		echo errCode;
 	}
-
 
 }
