@@ -38,9 +38,10 @@
 |
 */
 
-$route['default_controller'] = 'Template_test';
-$route['404_override'] = '';
+$route['default_controller'] = 'template_test';
 $route['(:any)'] = 'template_test/$1';
+$route['404_override'] = '';
+
 
 
 /* End of file routes.php */

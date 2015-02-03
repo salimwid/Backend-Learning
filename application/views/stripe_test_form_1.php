@@ -59,22 +59,23 @@ $(document).ready(function(){
       // token contains id, last4, and card type
       var token = response.id;
       console.log(token);
-      console.log(token);
       // Insert the token into the form so it gets submitted to the server
       $form.append($('<input type="hidden" name="stripeToken" />').val(token));
       // and re-submit
-      $form.submit(ajax_submit);
+      //$form.submit(ajax_submit);
+      ajax_submit();
     }
   };
 
   function ajax_submit () {
-    $form = $(this);
+    $form = $('#payment-form');
     $btn = $form.find('button');
     $.ajax({
         url:$form.attr('action'),
         type:$form.attr('method'),
         data:$form.serialize(),
         success:function(data){
+          console.log(data)
           $response = $.parseJSON(data);
           if ($response == 200) {
               $btn.html('Notification Sent');

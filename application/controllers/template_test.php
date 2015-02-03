@@ -50,14 +50,14 @@ class Template_test extends CI_Controller {
 		echo ($this->db->insert('name_registration',$dataArray)) ? 200:400;
 	}
 
-	private function payment_stripe(){
+	public function payment_stripe(){
 		$errCode = 200;
 		$postData = $this->input->post(null,true);
 		Stripe::setApiKey("sk_test_7LxIg6xbmmSeRfAVBubrapgU");
 
 		// Get the credit card details submitted by the form
 		$token = $postData['stripeToken'];
-		print("token printed");
+		//print("token printed");
 
 		// Create the charge on Stripe's servers - this will charge the user's card
 		try {
@@ -95,7 +95,7 @@ class Template_test extends CI_Controller {
 			  // Something else happened, completely unrelated to Stripe
 				$errCode=712;
 			}
-		echo errCode;
+		echo $errCode;
 	}
 
 }
