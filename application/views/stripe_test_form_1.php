@@ -2,11 +2,25 @@
 
 <form action="<?php echo base_url();?>payment_stripe" method="POST" id="payment-form">
 <span class="payment-errors"></span>
+<div class="form-row">
+  <label>
+    <span>Description</span>
+    <input type="text" size="20" name="description"/>
+  </label>
+</div>
+
 
 <div class="form-row">
   <label>
     <span>Card Number</span>
     <input type="text" size="20" data-stripe="number"/>
+  </label>
+</div>
+
+<div class="form-row">
+  <label>
+    <span>Subscription</span>
+    <input type="text" size="20" name="subscription"/>
   </label>
 </div>
 
@@ -28,8 +42,7 @@
 
 <button type="submit">Submit Payment
 </button>
-<span class="payment-errors">
-</span>
+<a href="<?php echo base_url();?>login">LOGIN</a>
 </form>
 
 <script type="text/javascript">
@@ -75,7 +88,7 @@ $(document).ready(function(){
         type:$form.attr('method'),
         data:$form.serialize(),
         success:function(data){
-          console.log(data)
+          console.log(data);
           $response = $.parseJSON(data);
           if ($response == 200) {
               $btn.html('Notification Sent');

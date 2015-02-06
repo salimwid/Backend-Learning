@@ -24,8 +24,8 @@ class Template_model extends CI_Model {
 
 	public function get_template()
 	{
-		// $query = $this->db->get('auth_user');
-		// return $query->result_array();
+		$query = $this->db->get('auth_user');
+		return $query->result_array();
 	}
 }
 
