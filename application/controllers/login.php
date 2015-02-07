@@ -29,7 +29,7 @@ class Login extends CI_Controller {
 
 	public function login_process(){
 		$postData = $this->input->post(null,true);
-		$result = $this->login_model->validate($postData);
+		$result = $this->login_model->validate($postData['username'], $postData['password']);
 		if ($result == 400) {
 			$msg = '<p class="errLogMess">Invalid Username or Password.</p>br />';
 			$this->view($msg);

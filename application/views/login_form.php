@@ -16,7 +16,7 @@
       </label>
     </div>
 
-    <button type="submit">Login
+    <button id="login-form-submit" type="submit">Login
     </button>
   </form>
   <h1>Create Username</h1>
