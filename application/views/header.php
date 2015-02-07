@@ -4,8 +4,6 @@
 	<meta charset="utf-8" />
     <meta name="metaport" content="width=initial-width, initial-scale=1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<?php echo $meta;?>
-	<?php echo $f_meta;?>
 
     <title><?php echo $title;?></title>
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">

@@ -3,7 +3,7 @@
 date_default_timezone_set('America/Toronto');
 require_once('application/assets/php/stripe/lib/Stripe.php');
 
-class Template_test extends CI_Controller {
+class Login extends CI_Controller {
 
 	public function __construct()
 	{
@@ -27,7 +27,7 @@ class Template_test extends CI_Controller {
 		$this->load->view('footer',$data);
 	}
 
-	public function process(){
+	public function login_process(){
 		$postData = $this->input->post(null,true);
 		$result = $this->login_model->validate($postData);
 		if ($result == 400) {

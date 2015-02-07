@@ -1,5 +1,5 @@
 <div class="form-submit-test">
-	<form id="post-form" method="post" action="template_test/posting_form" class="form-test">
+	<form id="post-form" method="post" action="<?php echo base_url();?>posting_form" class="form-test">
 		First name:<br>
 		<input id="first_name" type="text" class="fields" name="first_name">
 		<br>
@@ -43,12 +43,10 @@
 		if(!error){
 			$btn.html('Notifying...');
 			$btn.prop('disabled',true);
-			console.log(hello);
 			$.ajax({
 				url:$form.attr('action'),
 				type:$form.attr('method'),
 				data:$form.serialize(),
-				console.log(jsonEncode(data));
 				success:function(data){
 					$data = $.parseJSON(data);
 					if (data == 200) {
@@ -61,7 +59,6 @@
 							$btn.html('Error');
 		 					$btn.prop('disabled',false);
 					}
-					console.log(data);
 				},
 				error:function(data){
 		 				console.log(data);
@@ -80,7 +77,7 @@
 			if($object.val() == ''){
 				$target.html('');
 			}
-			$.get('template_test/search_names/'+$object.val(), {name: $object.val()}, function(data){
+			$.get(baseUrl+'search_names/'+$object.val(), {name: $object.val()}, function(data){
 		  		console.log(data);
 		  		$names = $.parseJSON(data);
 		  		$target.html('');
