@@ -22,9 +22,9 @@ class Login extends CI_Controller {
 		$data['msg'] = $msg;
 		$data['page'] = 'login';
 		$data['title'] = 'Trying to Save Cookies';
-		$this->load->view('header',$data);
-		$this->load->view('login_form');
-		$this->load->view('footer',$data);
+		$this->load->view('header');
+		$this->load->view('login_form',$data);
+		$this->load->view('footer');
 	}
 
 	public function login_process(){

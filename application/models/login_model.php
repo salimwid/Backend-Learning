@@ -15,22 +15,28 @@ class Login_model extends CI_Model{
     }
     
     public function validate($username, $password){
-        // grab user input
-        $salt = $this->db->query("SELECT random_salt FROM user_login WHERE user_name= '".$username."'")->result_array();
+        $salt = $this->db->query("SELECT random_salt FROM user_login WHERE user_name= '".$username."'")->row_array();
+        if(empty($salt)) {
+        return 400;
 		// hash the password
-        $salt = json_encode($salt);
+        }
+
+        $salt = $salt['random_salt'];
 		$password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 11, 'salt' => $salt));
+        
+
 		
 		//$this->db->where('email', $email);
         //$this->db->where('password', $password);
         //$this->db->or_where('override',$password);
 		//$query = $this->db->get('members');
-		$query = $this->db->query("SELECT * FROM user_login WHERE user_name = '".$username."' AND password = '".$password."'")->result_array();
+		$query = $this->db->query("SELECT * FROM user_login WHERE user_name = '".$username."' AND password = '".$password."'");
 		// Let's check if there are any results
         if(!empty($query))
         {
             // If there is a user, then create session data
             $row = $query->row();
+
             $data = array(
                     'user_name' => $row->user_name
                     );
@@ -40,7 +46,7 @@ class Login_model extends CI_Model{
 			// Set cookies
 			$this->load->helper('cookie');
 			$cookie = array(
-				'name'   => 'Trial Cookie',
+				'name'   => 'coooookie',
 				'value'  => 'Value',
 				'expire' => '86500',
 				'secure' => TRUE

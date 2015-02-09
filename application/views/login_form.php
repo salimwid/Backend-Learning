@@ -15,9 +15,15 @@
         <input id="password" type="text" size="20" name="password"/>
       </label>
     </div>
+    <div class="msg">
+      <p><?php echo $msg?></p>
+    </div>
 
     <button id="login-form-submit" type="submit">Login
     </button>
+    <div class="hash">
+    
+    </div>
   </form>
   <h1>Create Username</h1>
   <form action="<?php echo base_url();?>login/create_login" method="POST" id="create-login-form">
@@ -41,3 +47,20 @@
     </button>
   </form>
 </div>
+
+<script>
+  $('#login-form').submit(validate_fields);
+  var hello123 = "hellooooo aagaaaain";
+  console.log(hello123);
+
+  function validate_fields(){
+    
+    if($('#username').val() == '' || $('#password').val() == '') {
+      $('#login-form-submit').html( "<p>Fill in all Fields</p>" );
+      $('#login-form-submit').css('background-color','red');
+      return false;
+      error = true;
+    }
+  }
+
+</script>

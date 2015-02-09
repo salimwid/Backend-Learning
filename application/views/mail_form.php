@@ -77,13 +77,13 @@
 			if($object.val() == ''){
 				$target.html('');
 			}
-			$.get(baseUrl+'search_names/'+$object.val(), {name: $object.val()}, function(data){
-		  		console.log(data);
-		  		$names = $.parseJSON(data);
-		  		$target.html('');
-		  		$.each($names,function(){
-		  			$target.append($('<li data-name="'+this.first+' '+this.last+'" data-id="'+this.nameId+'"> '+this.first+' '+this.last+'</li>').click(select_name));
-		  		});
+			$.get('template_test/'+'search_names/'+$object.val(), {name: $object.val()}, function(data){
+		  		console.log($.parseJSON(data));
+		  		// $names = $.parseJSON(data);
+		  		// $target.html('');
+		  		// $.each($names,function(){
+		  		// 	$target.append($('<li data-name="'+this.first+' '+this.last+'" data-id="'+this.nameId+'"> '+this.first+' '+this.last+'</li>').click(select_name));
+		  		// });
 		  	});
 		}
 
@@ -94,5 +94,5 @@
 			$target.find('input[name="nameID"]').val($object.attr('data-id'));
 			$target.find('#name_list').html('');
 		}
-	</script>
+
 </script>
