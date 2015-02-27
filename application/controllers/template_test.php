@@ -20,7 +20,7 @@ class Template_test extends CI_Controller {
 
 
 		$this->load->view('header', $data);
-		$this->load->view('mail_form', $data);
+		$this->load->view('stripe_test_form_1', $data);
 		$this->load->view('footer', $data);
 	}
 
