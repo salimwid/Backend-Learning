@@ -4,8 +4,8 @@
   width: 100%;
 }
 
-section {
-	margin-top: 500px;
+section, .login-form-container {
+	margin-top: 100px;
 }
 
 .form-submit-test {

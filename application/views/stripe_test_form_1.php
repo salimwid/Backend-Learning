@@ -43,6 +43,7 @@
 <button type="submit">Submit Payment
 </button>
 <a href="<?php echo base_url();?>login">LOGIN</a>
+<a href="<?php echo base_url();?>upload">Upload Image</a>
 </form>
 
 <script type="text/javascript">

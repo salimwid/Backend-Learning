@@ -77,8 +77,8 @@
 			if($object.val() == ''){
 				$target.html('');
 			}
-			$.get('template_test/'+'search_names/'+$object.val(), {name: $object.val()}, function(data){
-		  		console.log($.parseJSON(data));
+			$.get('template_test/search_names/'+$object.val(), {name: $object.val()}, function(data){
+		  		console.log(data);
 		  		// $names = $.parseJSON(data);
 		  		// $target.html('');
 		  		// $.each($names,function(){

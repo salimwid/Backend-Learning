@@ -20,14 +20,12 @@ class Template_test extends CI_Controller {
 
 
 		$this->load->view('header', $data);
-		$this->load->view('stripe_test_form_1', $data);
+		$this->load->view('mail_form', $data);
 		$this->load->view('footer', $data);
 	}
 
 	public function search_names($name) {
 		$query = $this->db->query('SELECT nameId,first,last FROM name_list WHERE first LIKE "'.$name.'%" OR last LIKE "'.$name.'%" LIMIT 0,5')->result_array();
-		print_r($query);
-		die();
 		echo json_encode($query);
 	}
 
@@ -48,6 +46,7 @@ class Template_test extends CI_Controller {
 		$this->load->view('logged_in',$data);
 		$this->load->view('footer',$data);
 	}
+	
 
 	public function payment_stripe(){
 		$errCode = 200;

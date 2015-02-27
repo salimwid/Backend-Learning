@@ -35,7 +35,7 @@ class Login extends CI_Controller {
 			$this->view($msg);
 		}
 		else {
-			redirect(base_url().'template_test/member_page');
+			redirect(base_url().'member_page');
 		}
 	}
 
