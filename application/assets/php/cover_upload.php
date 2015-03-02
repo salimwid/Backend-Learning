@@ -1,9 +1,8 @@
 <?php
 //require_once('awslog.php');
-
 if(isset($_FILES['file'])) {
+	print_r($_FILES);
 	list($width, $height, $type, $attr) = getimagesize($_FILES['file']['tmp_name']);
-	
 	//$filename = $_POST['imageName'].'.jpeg';
 	if ( $_FILES['file']['type'] == 'image/jpg'
 	|| $_FILES['file']['type'] == 'image/jpeg'

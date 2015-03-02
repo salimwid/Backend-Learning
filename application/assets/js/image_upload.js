@@ -6,25 +6,27 @@ $(document).ready(function() {
   img_name = '',
   baseUrl = 'localhost';
 
-  $('input[type=file]').on('change', preUpload);
+  // $('input[type=file]').on('change', preUpload);
 
-  function preUpload(event)
-  {
-    files = event.target.files;
-  }
+  // function preUpload(event)
+  // {
+  //   files = event.target.files;
+  // }
 
   $('.chg_img').on('click', function(e) {
     e.stopPropagation();
     e.preventDefault();
     url = $(this).attr('rel');
+    console.log('wassup');
     upload_btn.click();
 
   });
 
   upload_btn.on('change', function () {
-    var selected_file = $('#upload')[0].files;
+    var selected_file = $('#upload')[0].files[0];
     processUpload(selected_file);
-
+    console.log(selected_file);
+    console.log(selected_file.name);
     return false;
   });
 
@@ -33,6 +35,7 @@ $(document).ready(function() {
     form_data.append('filename', file.name);
     form_data.append('filetype', file.type);
     form_data.append('file', file);
+    console.log(form_data);
     var cover_upload = 'cover_upload.php';
     $.ajax({
       url: '/application/assets/php/' + cover_upload,
@@ -43,7 +46,7 @@ $(document).ready(function() {
       success: function(response) {
         response = $.parseJSON(response);
         console.log(response);
-        if(response['status'] == 2){
+        if(response == 2){
 
         }
         else{
